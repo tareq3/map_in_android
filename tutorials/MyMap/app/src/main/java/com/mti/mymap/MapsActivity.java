@@ -80,43 +80,6 @@ public class MapsActivity extends AppCompatActivity implements
                 .build();
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
 
-       // animateMapTo(SYDNEY,10f,true);
-    }
-
-    /**
-     * change camera position on certain position
-     * */
-    protected synchronized void animateMapTo(final LatLng pin, final Float zoomLevel, final boolean useAnimation)
-    {
-        final GoogleMap map = mMap;
-        if ( pin == null || map == null)
-        {
-            return;
-        }
-
-        // Set zoomlevel to current level if not set.
-        final float cameraZoomLevel = zoomLevel == null ? map.getCameraPosition().zoom : zoomLevel;
-
-        // Build camera position
-        CameraPosition position = new CameraPosition.Builder()
-                .target(pin)
-                .zoom(cameraZoomLevel)
-                .bearing(0)
-                .tilt(45)
-                .build();
-
-        // Stop any animations
-        map.stopAnimation();
-        if (useAnimation)
-        {
-            map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
-//            map.animateCamera(CameraUpdateFactory.newLatLngZoom(pin, cameraZoomLevel));
-        }
-        else
-        {
-            map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
-//            map.moveCamera(CameraUpdateFactory.newLatLngZoom(pin, cameraZoomLevel));
-        }
     }
 
     private void addMarkersToMap() {
